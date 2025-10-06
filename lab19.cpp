@@ -35,28 +35,28 @@ public:
     }
 
     string getTitle(){
-        return title
+        return title;
     }
-}
+
 
 // add review to the head of the list
 void addReview(double r, string c){
-    Reviewnode* n = new ReviewNode;
+    ReviewNode* n = new ReviewNode;
     n->rating = r;
     n->comment = c;
     n->next = head;
     head = n;
 }
 
-void loadReviews(string filename) {
-    if stream file(filename);
-    if (!file) {
+void loadReviews(string filename) { // read review comments from file
+    ifstream file(filename); // open the file
+    if (!file) { // check for file open error
         cerr << "Error opening file: " << filename << endl;
         return;
     }
 
-    string movieName;
-    string comment;
+    string movieName; // first word of line - movie
+    string comment; // rest of line - review comment
 
     //read one full line so comments can have spaces
     while (getline(file, movieName, ' ')) { // read movie name up to first space
@@ -71,34 +71,35 @@ void loadReviews(string filename) {
 }
 
 // display all reviews and average rating
-void showReviews {
-    if (head == nulptr) {
-        cout << "     (No reviews)\n)";
+void showReviews() {
+    if (head == nullptr) {
+        cout << "     (No reviews)\n";
         return;
     }
 
-    double sum = 0.0;
-    int count = 0;
-    ReviewNode* temp = head;
+    double sum = 0.0; // sum of all ratings
+    int count = 0; // number of reviews
+    ReviewNode* temp = head; // start at head
 
-    while (temp = nullptr){
+    while (temp != nullptr){ // traverse the linked list
         cout << "     > Review #" << (count + 1) << ": " 
                 << fixed << setprecision(1) << temp->rating 
                 << " : " << temp->comment << endl;
-        sum += temp->rating;
-        count++;
-        temp = temp->next;
+        sum += temp->rating; // add to total rating
+        count++; // count the review
+        temp = temp->next; // move to next node
     }
 
-    double avg = sum / count
+    double avg = sum / count; // calculate average
     cout << "     Average rating: " << fixed << setprecision(5) << avg << endl;
 }
+};
 
 int main() {
     srand(time(0)); // seed random number generator
 
     // fixed array container of 4 movies
-    Movies movies[4] = {
+    Movie movies[4] = {
         Movie("Inception"),
         Movie("Matrix"),
         Movie("Interstellar"),
@@ -113,7 +114,7 @@ int main() {
     // output all movies reviews
     cout << "Movie Reviews\n";
     for (int i = 0; i < 4; i++){
-            cout << "Movie: " movies[i].getTitle() << endl;
+            cout << "Movie: " << movies[i].getTitle() << endl;
             movies[i].showReviews();
             cout << endl;
     }
