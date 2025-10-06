@@ -69,3 +69,17 @@ void loadReviews(string filename) {
 
     file.close();
 }
+
+// display all reviews and average rating
+void showReviews {
+    if (head == nulptr) {
+        cout << "     (No reviews)\n)";
+        return;
+    }
+
+    double sum = 0.0;
+    int count = 0;
+    ReviewNode* temp = head;
+
+    while
+}
