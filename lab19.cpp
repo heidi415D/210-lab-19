@@ -59,8 +59,11 @@ void loadReviews(string filename) { // read review comments from file
     string comment; // rest of line - review comment
 
     //read one full line so comments can have spaces
-    while (getline(file, movieName, ' ')) { // read movie name up to first space
+    while (file >> movieName) { // read movie name up to first space
         getline(file, comment);  //     read the rest of the line as comment
+        if (!comment.empty() && comment[0] == ' ') 
+            comment.erase(0, 1); // remove leading space
+        
         if (movieName == title) {
             double randomRating = (rand() % 41 + 10) / 10.0; // 1.0 - 5.0
             addReview(randomRating, comment);
