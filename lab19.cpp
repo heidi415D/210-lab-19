@@ -95,5 +95,28 @@ void showReviews {
 }
 
 int main() {
+    srand(time(0)); // seed random number generator
+
+    // fixed array container of 4 movies
+    Movies movies[4] = {
+        Movie("Inception"),
+        Movie("Matrix"),
+        Movie("Interstellar"),
+        Movie("Prestige")
+    };
+
+    // load reviews for each movie from file
+    for (int i = 0; i < 4; i++) {
+        movies[i].loadReviews("reviews.txt");
+    }
+
+    // output all movies reviews
+    cout << "Movie Reviews\n";
+    for (int i = 0; i < 4; i++){
+            cout << "Movie: " movies[i].getTitle() << endl;
+            movies[i].showReviews();
+            cout << endl;
+    }
     
+    return 0;
 }
