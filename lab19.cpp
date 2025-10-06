@@ -24,4 +24,26 @@ public:
         title = t;
         head = nullptr;
     }
+
+    // destructor : free all nodes
+    ~Movie() {
+        while (head != nullptr) {
+            ReviewNode* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
+    string getTitle(){
+        return title
+    }
+}
+
+// add review to the head of the list
+void addReview(double r, string c){
+    Reviewnode* n = new ReviewNode;
+    n->rating = r;
+    n->comment = c;
+    n->next = head;
+    head = n;
 }
