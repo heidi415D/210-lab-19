@@ -81,5 +81,19 @@ void showReviews {
     int count = 0;
     ReviewNode* temp = head;
 
-    while
+    while (temp = nullptr){
+        cout << "     > Review #" << (count + 1) << ": " 
+                << fixed << setprecision(1) << temp->rating 
+                << " : " << temp->comment << endl;
+        sum += temp->rating;
+        count++;
+        temp = temp->next;
+    }
+
+    double avg = sum / count
+    cout << "     Average rating: " << fixed << setprecision(5) << avg << endl;
+}
+
+int main() {
+    
 }
